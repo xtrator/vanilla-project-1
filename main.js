@@ -3,8 +3,11 @@ import setupCategories from "./components/utils.js/categories";
 import nav from "./components/nav";
 
 document.querySelector("#app").innerHTML = `
-  <div class="h-screen px-4 py-6">
+  <div class="h-screen">
     ${nav()}
+    <div>
+      <ul>All Categories</ul>
+    </div>
   </div>
 `;
 
