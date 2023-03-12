@@ -6,11 +6,13 @@ export default async function setupCategories(element) {
     .catch((e) => ["<li>Failed to Fetch</li>"]);
 
   categories = categories.map((category) => {
-    return `<li>${category.name}</li>`;
+    const className =
+      "bg-amber-500 text-white hover:text-amber-200 hover:bg-white h-full flex justify-center items-center";
+    return `<li class="${className}">${category.name}</li>`;
   });
 
   element.innerHTML = `
-    <ul class="gap-4 text-4xl bg-yellow-200 h-full">
+    <ul class=" text-4xl bg-yellow-200 h-full flex flex-col justify-around text-center">
         ${categories.join("")}
     </ul>
   `;
