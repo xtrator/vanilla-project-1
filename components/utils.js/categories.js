@@ -10,8 +10,7 @@ export default async function setupCategories(element) {
   });
 
   element.innerHTML = `
-    <p>Categories</p>
-    <ul>
+    <ul class="gap-4 text-4xl bg-yellow-200 h-full">
         ${categories.join("")}
     </ul>
   `;
