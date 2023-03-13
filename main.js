@@ -1,28 +1,12 @@
 import "./style.css";
-import setupCategories from "./components/utils.js/categories";
 import nav from "./components/nav";
+import { category, setupCategory } from "./components/category";
 
-document.querySelector("#app").innerHTML = `
+document.querySelector("#app").innerHTML = /* HTML */ `
   <div class="h-screen">
     ${nav()}
-    <div>
-      <ul>All Categories</ul>
-    </div>
+    <div class="px-56 font-light">${category()}</div>
   </div>
 `;
 
-// setupCategories(document.querySelector("#categories"));
-
-/*
-<h1 class="text-8xl text-teal-500">Tienda</h1>
-    <div class="flex bg-red-400 h-full">
-      <div id="categories" class="h-full bg-red-400"></div>
-      <div><h2>Tienda</h2></div>
-    </div>
-
-
-    <div class="flex">
-      <div class="">Categories</div>
-      <div class="">Tienda</div>
-    </div>
-*/
+setupCategory();
