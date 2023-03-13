@@ -21,13 +21,15 @@ export default function setupProducts() {
     ></div>
   </div>`;
   parent.appendChild(products);
-  mountProducts();
+  mountProducts(1);
   return null;
 }
 
-async function mountProducts() {
+async function mountProducts(id) {
   const parent = document.querySelector("#fetched-products");
-  const [productsJSON, error] = await fetch("http://localhost:3333/products/1")
+  const [productsJSON, error] = await fetch(
+    `http://localhost:3333/products/${id}`
+  )
     .then((res) => res.json())
     .then((res) => [res.products, res.error])
     .catch((e) => console.log("errorr: " + e));
@@ -42,6 +44,7 @@ async function mountProducts() {
     return product(prod);
   });
 
+  parent.innerHTML = ``;
   parent.append(...products);
 }
 
@@ -79,6 +82,8 @@ function product(product) {
 
   return el;
 }
+
+export { mountProducts };
 
 /* category int
 discount int

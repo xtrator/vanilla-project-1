@@ -1,5 +1,6 @@
 import rightChevronUrl from "/chevron-right.svg";
 import downChevronUrl from "/chevron-down.svg";
+import { mountProducts } from "./products";
 
 export function category() {
   return /* HTML */ `
@@ -32,7 +33,7 @@ export async function setupCategory() {
   function handleClick(e) {
     e.stopPropagation();
     let li = e.target;
-    console.log(li.innerText);
+    mountProducts(li.id);
   }
 
   const listItemStyles =
@@ -48,6 +49,7 @@ export async function setupCategory() {
           src="${rightChevronUrl}"
         />${category.name}`;
       li.className = listItemStyles;
+      li.id = category.id;
       li.addEventListener("click", (e) => handleClick(e));
       return li;
     });
