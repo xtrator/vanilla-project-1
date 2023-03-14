@@ -1,11 +1,11 @@
 import "./style.css";
-import nav from "./components/nav";
+import setupNav from "./components/nav";
 import { category, setupCategory } from "./components/category";
 import setupProducts from "./components/products";
 
 document.querySelector("#app").innerHTML = /* HTML */ `
   <div class="h-screen">
-    ${nav()}
+    <div id="nav-container"></div>
     <div class="px-[13%] font-light flex gap-[10%]">
       ${category()}
       <div
@@ -18,3 +18,4 @@ document.querySelector("#app").innerHTML = /* HTML */ `
 
 setupCategory();
 setupProducts();
+setupNav();
