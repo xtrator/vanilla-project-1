@@ -1,3 +1,4 @@
+import { mountProducts } from "./products";
 import shopLogo from "/Logo.svg";
 
 export default function setupNav() {
@@ -24,7 +25,11 @@ export default function setupNav() {
 function setupCart(nav) {
   const cartBtn = document.createElement("button");
   cartBtn.classList =
-    "border-blue-300 border px-3 py-2 text-blue-600 font-bold rounded-md";
+    "border-blue-300 border px-3 py-2 text-blue-600 font-bold rounded-md hover:bg-blue-600 hover:text-white";
   cartBtn.innerText = "My Cart";
+  cartBtn.addEventListener("click", () => {
+    mountProducts(null, JSON.parse(sessionStorage.products));
+  });
+
   nav.appendChild(cartBtn);
 }

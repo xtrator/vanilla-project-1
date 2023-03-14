@@ -27,11 +27,18 @@ export default function setupProducts() {
   return null;
 }
 
-async function mountProducts(id) {
+async function mountProducts(id, idsArr) {
+  function fetchProducts() {
+    if (idsArr) {
+      return fetch(
+        `http://localhost:3333/products/cart/${sessionStorage.products}`
+      );
+    } else {
+      return fetch(`http://localhost:3333/products/${id}`);
+    }
+  }
   const parent = document.querySelector("#fetched-products");
-  const [productsJSON, error] = await fetch(
-    `http://localhost:3333/products/${id}`
-  )
+  const [productsJSON, error] = await fetchProducts()
     .then((res) => res.json())
     .then((res) => [res.products, res.error])
     .catch((e) => console.log("errorr: " + e));
