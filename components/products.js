@@ -1,3 +1,5 @@
+import { product } from "./product";
+
 export default function setupProducts() {
   const parent = document.querySelector("#products");
   const products = document.createElement("div");
@@ -38,7 +40,6 @@ async function mountProducts(id) {
     alert(error);
     return;
   }
-  console.log(productsJSON);
 
   let products = productsJSON.map((prod) => {
     return product(prod);
@@ -46,41 +47,6 @@ async function mountProducts(id) {
 
   parent.innerHTML = ``;
   parent.append(...products);
-}
-
-function product(product) {
-  if (product.url_image == "") {
-    product.url_image =
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
-  }
-
-  const el = document.createElement("div");
-  el.classList =
-    "p-4 hover:outline hover:outline-blue-200 cursor-pointer w-64 h-96 flex flex-col items-start gap-2";
-  el.innerHTML = /* HTML */ ` <img
-      class="w-56 h-56"
-      src="${product.url_image}"
-    />
-    <p class="text h-12">${product.name}</p>
-    <p class="text-xl font-bold flex gap-1 justify-between items-center">
-      $${Math.floor(product.price / 100)}.${product.price % 100}
-      <span class="bg-green-100 text-green-800 font-light text-sm"
-        >${product.discount > 0 ? `${product.discount}% OFF` : ""}</span
-      >
-    </p>`;
-
-  const addCartBtn = document.createElement("button");
-  addCartBtn.classList =
-    "text-blue-700 border border-blue-300 rounded-md px-4 py-1 hover:bg-blue-700 hover:text-white";
-  addCartBtn.innerText = "Add to Cart";
-  addCartBtn.dataset.product_id = product.id;
-  addCartBtn.addEventListener("click", (e) =>
-    console.log(e.target.dataset.product_id)
-  );
-
-  el.appendChild(addCartBtn);
-
-  return el;
 }
 
 export { mountProducts };
