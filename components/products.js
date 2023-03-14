@@ -33,10 +33,11 @@ async function mountProducts(id, idsArr) {
   function fetchProducts() {
     if (idsArr) {
       return fetch(
-        `http://localhost:3333/products/cart/${sessionStorage.products}`
+        import.meta.env.VITE_API_URL +
+          `/products/cart/${sessionStorage.products}`
       );
     } else {
-      return fetch(`http://localhost:3333/products/${id}`);
+      return fetch(import.meta.env.VITE_API_URL + `/products/${id}`);
     }
   }
   const [productsJSON, error] = await fetchProducts()

@@ -25,7 +25,9 @@ export function category() {
 export async function setupCategory() {
   let allCategoriesNode = document.querySelector("#categories-title");
   let categories = [];
-  categories = await fetch("http://localhost:3333/products/categories")
+  categories = await fetch(
+    import.meta.env.VITE_API_URL + "/products/categories"
+  )
     .then((res) => res.json())
     .then((res) => res.categories)
     .catch((e) => console.error(e));
