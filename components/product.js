@@ -22,7 +22,10 @@ export function product(product) {
   const addCartBtn = document.createElement("button");
   addCartBtn.classList =
     "text-blue-700 border border-blue-300 rounded-md px-4 py-1 hover:bg-blue-700 hover:text-white";
-  if (sessionStorage.products?.includes(`${product.id},`)) {
+  if (
+    sessionStorage.products &&
+    JSON.parse(sessionStorage.products).includes(`${product.id}`)
+  ) {
     addCartBtn.classList.add("bg-blue-800", "text-white");
     addCartBtn.innerText = "Remove from Cart";
   } else {
