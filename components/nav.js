@@ -12,6 +12,7 @@ export default function setupNav() {
       >
     </div>
     <input
+      id="search"
       type="text"
       placeholder="Your search..."
       class="bg-gray-100 rounded-full focus:outline-gray-200 px-11 py-2 w-full max-w-xl text-gray-600"
@@ -20,6 +21,7 @@ export default function setupNav() {
   setupCart(nav);
 
   parent.appendChild(nav);
+  setupSearch();
 }
 
 function setupCart(nav) {
@@ -32,4 +34,19 @@ function setupCart(nav) {
   });
 
   nav.appendChild(cartBtn);
+}
+
+function setupSearch() {
+  const input = document.querySelector("#search");
+  input.addEventListener("keyup", (e) => handleKeyUp(e));
+
+  let prevId = null;
+  function handleKeyUp(e) {
+    if (prevId) {
+      clearTimeout(prevId);
+    }
+    prevId = setTimeout(() => {
+      mountProducts(null, null, e.target.value);
+    }, 2000);
+  }
 }

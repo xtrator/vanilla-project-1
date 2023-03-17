@@ -4,19 +4,7 @@ export default function setupProducts() {
   const parent = document.querySelector("#products");
   const products = document.createElement("div");
   products.innerHTML = /* HTML */ `<div class="flex flex-col gap-10">
-    <div>
-      <label class="text-gray-400 relative bottom-5 left-16 bg-white z-10">
-        Sort by
-      </label>
-      <select
-        class="px-3 py-2 outline-none w-32 border border-gray-300 rounded-md"
-      >
-        <option disabled selected value></option>
-        <option>Price</option>
-        <option></option>
-        <option></option>
-      </select>
-    </div>
+    <div></div>
     <div
       id="fetched-products"
       class="flex flex-wrap gap-4 justify-center"
@@ -27,7 +15,7 @@ export default function setupProducts() {
   return null;
 }
 
-async function mountProducts(id, idsArr) {
+async function mountProducts(id, idsArr, keywords) {
   const parent = document.querySelector("#fetched-products");
   parent.innerHTML = spinner();
   function fetchProducts() {
@@ -36,7 +24,11 @@ async function mountProducts(id, idsArr) {
         import.meta.env.VITE_API_URL +
           `/products/cart/${sessionStorage.products}`
       );
-    } else {
+    } else if (keywords) {
+      return fetch(
+        import.meta.env.VITE_API_URL + "/products/search/" + keywords
+      );
+    } else if (id) {
       return fetch(import.meta.env.VITE_API_URL + `/products/${id}`);
     }
   }
@@ -88,3 +80,17 @@ id int
 name string
 price int
 url_image string */
+
+/*
+<label class="text-gray-400 relative bottom-5 left-16 bg-white z-10">
+        Sort by
+      </label>
+      <select
+        class="px-3 py-2 outline-none w-32 border border-gray-300 rounded-md"
+      >
+        <option disabled selected value></option>
+        <option>Price</option>
+        <option></option>
+        <option></option>
+      </select>
+*/
